@@ -1,0 +1,92 @@
+table _Medidas
+	lineageTag: 0b272cf8-880e-4ecb-a31b-6203bcfa5091
+
+	measure 'Total Titulos' = DISTINCTCOUNT(netflix_titles[show_id])
+		formatString: 0
+		lineageTag: dbb951a1-6017-4d0d-94ed-82f9afcd0b57
+
+	measure 'Total Peliculas' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(netflix_titles[show_id]),
+			    netflix_titles[type] = "Movie"
+			) + 0
+		formatString: 0
+		lineageTag: 22c84bb0-3119-4b7c-868a-0fcc24f3ab2d
+
+	measure 'Total Series' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(netflix_titles[show_id]),
+			    netflix_titles[type] = "TV Show"
+			) + 0
+		formatString: 0
+		lineageTag: 9a1b857e-4096-44a5-8941-8a2a6e0b8e3a
+
+	measure '% Estrenos vs Agregados Anuales' = ```
+			
+			VAR AnioActual = SELECTEDVALUE(netflix_titles[Year Added])
+			VAR TitulosEstreno = 
+			    CALCULATE(
+			        [Total Titulos],
+			        netflix_titles[release_year] = AnioActual
+			    )
+			VAR TotalAgregadosAnio = [Total Titulos]
+			RETURN
+			IF(
+			    AnioActual >= 2016 && AnioActual <= 2021,
+			    DIVIDE(TitulosEstreno, TotalAgregadosAnio, 0),
+			    BLANK()
+			)
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 2ed6ea75-52e7-4ed2-94d8-d67f2bcd25fc
+
+	measure Color_Top_Genero = ```
+			
+			VAR RankingActual = 
+			    RANKX(
+			        ALLSELECTED(dim_genero[Genero_Traducido]), 
+			        [Total Titulos], 
+			        , 
+			        DESC
+			    )
+			RETURN
+			    IF(RankingActual = 1, "#9E1B1B", "#355053")  
+			```
+		lineageTag: 3a086070-cb14-4259-b475-4a988ffe34bb
+
+	measure Color_Top_Year = ```
+			
+			VAR MaxValorYear = 
+			    MAXX(
+			        ALLSELECTED(netflix_titles[Year Added]), 
+			        [Total Titulos]
+			    )
+			RETURN
+			    IF([Total Titulos] = MaxValorYear, "#9E1B1B", "#355053")   
+			```
+		lineageTag: 62d1c0b5-a46e-41f1-885f-98d006e5c6c5
+
+	measure Prom_Minutos = CALCULATE(AVERAGE(netflix_titles[duracion_num]), netflix_titles[type] = "Movie")
+		lineageTag: 1e6bdf3e-8cd7-495d-a002-ca70c31ccd86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Prom_Temporadas = CALCULATE(AVERAGE(netflix_titles[duracion_num]), netflix_titles[type] = "TV Show")
+		lineageTag: 5aea23bd-780a-473b-b56e-c0c5c053ae3c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _Medidas = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

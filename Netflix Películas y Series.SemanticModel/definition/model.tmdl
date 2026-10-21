@@ -1,0 +1,26 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-CO
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["netflix_titles","_Medidas","Dim_Tipo","Dim_Pais"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table netflix_titles
+ref table DateTableTemplate_d5cbf6d4-fcf4-4a8c-927a-78e8774c7b44
+ref table LocalDateTable_843fc0ec-d663-4759-8770-63799c85df4d
+ref table _Medidas
+ref table Dim_Tipo
+ref table Dim_Pais
+ref table dim_genero
+
+ref cultureInfo es-ES
+

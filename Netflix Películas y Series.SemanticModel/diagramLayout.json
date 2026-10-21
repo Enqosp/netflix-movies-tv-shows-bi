@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "netflix_titles",
+          "nodeLineageTag": "06bd4d51-7207-4a4c-a80e-4deac7acc76e",
+          "size": {
+            "height": 465,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 347,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "0b272cf8-880e-4ecb-a31b-6203bcfa5091",
+          "size": {
+            "height": 161,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 341,
+            "y": 341.5
+          },
+          "nodeIndex": "Dim_Tipo",
+          "nodeLineageTag": "45b88f01-6474-4044-a0ad-d42d8cfff327",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 595,
+            "y": 220.75
+          },
+          "nodeIndex": "Dim_Pais",
+          "nodeLineageTag": "ab6159c6-82ce-4cc8-b264-615dea461dda",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 606,
+            "y": 0
+          },
+          "nodeIndex": "dim_genero",
+          "nodeLineageTag": "8b17aa7a-9b52-4cf0-9354-fbe58828e1ee",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

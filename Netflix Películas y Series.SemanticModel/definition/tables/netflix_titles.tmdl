@@ -1,0 +1,171 @@
+table netflix_titles
+	lineageTag: 06bd4d51-7207-4a4c-a80e-4deac7acc76e
+
+	column show_id
+		dataType: string
+		lineageTag: 1728df44-bc58-40ce-8eaa-ec3ed733ca0c
+		summarizeBy: none
+		sourceColumn: show_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 7ee7bfe3-c33a-4cc6-913b-9b0ac9674e50
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 20747415-10bb-46bf-95d8-ab6da7ab1c7e
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column director
+		dataType: string
+		lineageTag: eb014217-28d3-430f-b269-678d1105e9af
+		summarizeBy: none
+		sourceColumn: director
+
+		annotation SummarizationSetBy = Automatic
+
+	column cast
+		dataType: string
+		lineageTag: b9c868d2-c58e-42b1-973e-d5e8e0bedfa4
+		summarizeBy: none
+		sourceColumn: cast
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: af26739a-12cf-4a2d-9a95-5e6c48a9d8d0
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cc54dc2c-8e1a-4503-8d88-69ec7eeb7101
+		summarizeBy: none
+		sourceColumn: date_added
+
+		variation Variación
+			isDefault
+			relationship: 9aadc612-5b3f-4212-9b6d-bcfc70b8cf1d
+			defaultHierarchy: LocalDateTable_843fc0ec-d663-4759-8770-63799c85df4d.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column release_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b269e0a-7aff-4c1d-84ee-c3ac452f96d6
+		summarizeBy: none
+		sourceColumn: release_year
+
+		annotation SummarizationSetBy = User
+
+	column rating
+		dataType: string
+		lineageTag: 45421582-902d-441d-9773-a1d15d85e423
+		summarizeBy: none
+		sourceColumn: rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracion_num
+		dataType: int64
+		formatString: 0
+		lineageTag: c7e6c398-2220-4490-aba0-d3314a58edde
+		summarizeBy: average
+		sourceColumn: duracion_num
+
+		annotation SummarizationSetBy = User
+
+	column duracion_unidad
+		dataType: string
+		lineageTag: 12b7810a-d83b-4a00-bfe1-74679982deb1
+		summarizeBy: none
+		sourceColumn: duracion_unidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column listed_in
+		dataType: string
+		lineageTag: 304ed002-096c-4a35-bab0-205672013d31
+		summarizeBy: none
+		sourceColumn: listed_in
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: af3773aa-a373-4a37-8fb9-776b324f5915
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Added' = YEAR(netflix_titles[date_added])
+		formatString: 0
+		lineageTag: b3be02d1-0f96-4113-9062-864b0781f01b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'Clasificacion Edad' =
+			
+			SWITCH(
+			    TRUE(),
+			    netflix_titles[rating] IN {"TV-MA", "R", "NC-17", "UR", "NR"}, "Adultos (17+)",
+			    netflix_titles[rating] IN {"TV-14", "PG-13"}, "Adolescentes (13+)",
+			    netflix_titles[rating] IN {"PG", "TV-PG", "TV-Y7", "TV-Y7-FV"}, "Niños (7+)",
+			    netflix_titles[rating] IN {"G", "TV-Y", "TV-G"}, "Todo Público",
+			    "Sin Clasificar"
+			)
+		lineageTag: d4d87adf-44e8-4d54-a02f-66426d55da74
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition netflix_titles = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Temp\UCOMPEMSAR\Octavo semestre\Visualización de datos\Transferencia\archive\netflix_titles.csv"),[Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"show_id", type text}, {"type", type text}, {"title", type text}, {"director", type text}, {"cast", type text}, {"country", type text}, {"date_added", type date}, {"release_year", Int64.Type}, {"rating", type text}, {"duration", type text}, {"listed_in", type text}, {"description", type text}}),
+				    #"Valor reemplazado" = Table.ReplaceValue(#"Tipo cambiado","","Sin información",Replacer.ReplaceValue,{"director", "cast", "country"}),
+				    #"Dividir columna por delimitador" = Table.SplitColumn(#"Valor reemplazado", "duration", Splitter.SplitTextByEachDelimiter({" "}, QuoteStyle.None, false), {"duration.1", "duration.2"}),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Dividir columna por delimitador",{{"duration.1", Int64.Type}, {"duration.2", type text}}),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(#"Tipo cambiado1",{{"duration.1", "duracion_num"}, {"duration.2", "duracion_unidad"}}),
+				    #"Dividir columna por delimitador1" = Table.ExpandListColumn(Table.TransformColumns(#"Columnas con nombre cambiado", {{"country", Splitter.SplitTextByDelimiter(",", QuoteStyle.None), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "country"),
+				    #"Tipo cambiado2" = Table.TransformColumnTypes(#"Dividir columna por delimitador1",{{"country", type text}}),
+				    #"Texto recortado" = Table.TransformColumns(#"Tipo cambiado2",{{"country", Text.Trim, type text}}),
+				    #"Dividir columna por delimitador2" = Table.ExpandListColumn(Table.TransformColumns(#"Texto recortado", {{"listed_in", Splitter.SplitTextByDelimiter(",", QuoteStyle.None), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "listed_in"),
+				    #"Tipo cambiado3" = Table.TransformColumnTypes(#"Dividir columna por delimitador2",{{"listed_in", type text}}),
+				    #"Texto recortado1" = Table.TransformColumns(#"Tipo cambiado3",{{"listed_in", Text.Trim, type text}}),
+				    #"Filas filtradas" = Table.SelectRows(#"Texto recortado1", each ([rating] <> "" and [rating] <> "66 min" and [rating] <> "74 min" and [rating] <> "84 min" and [rating] <> "Classic Movies, Documentaries")),
+				    #"Valor reemplazado1" = Table.ReplaceValue(#"Filas filtradas",null,"Sin información",Replacer.ReplaceValue,{"rating"}),
+				    #"Valor reemplazado2" = Table.ReplaceValue(#"Valor reemplazado1","(en blanco)","Sin información",Replacer.ReplaceText,{"country"}),
+				    #"Texto limpio" = Table.TransformColumns(#"Valor reemplazado2",{{"country", Text.Clean, type text}}),
+				    #"Texto recortado2" = Table.TransformColumns(#"Texto limpio",{{"country", Text.Trim, type text}}),
+				    #"Valor reemplazado3" = Table.ReplaceValue(#"Texto recortado2","","Sin información",Replacer.ReplaceValue,{"country"}),
+				    #"Valor reemplazado4" = Table.ReplaceValue(#"Valor reemplazado3","(En blanco)","Sin información",Replacer.ReplaceText,{"country"}),
+				    #"Valor reemplazado5" = Table.ReplaceValue(#"Valor reemplazado4","BLANK","Sin información",Replacer.ReplaceText,{"country"})
+				in
+				    #"Valor reemplazado5"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

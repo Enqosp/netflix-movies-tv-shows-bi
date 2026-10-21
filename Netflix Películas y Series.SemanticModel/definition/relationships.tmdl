@@ -1,0 +1,17 @@
+relationship 9aadc612-5b3f-4212-9b6d-bcfc70b8cf1d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: netflix_titles.date_added
+	toColumn: LocalDateTable_843fc0ec-d663-4759-8770-63799c85df4d.Date
+
+relationship AutoDetected_b40d5099-ced1-48d4-8d6c-8d522ed1cbb3
+	fromColumn: netflix_titles.type
+	toColumn: Dim_Tipo.type
+
+relationship 73c45679-9480-c83f-fc65-0cf2412cef9e
+	fromColumn: netflix_titles.country
+	toColumn: Dim_Pais.country
+
+relationship f537bc90-2958-1d19-7770-650a105d7a54
+	fromColumn: netflix_titles.listed_in
+	toColumn: dim_genero.listed_in
+

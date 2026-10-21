@@ -1,0 +1,32 @@
+table Dim_Pais
+	lineageTag: ab6159c6-82ce-4cc8-b264-615dea461dda
+
+	column country
+		dataType: string
+		lineageTag: 48f855dc-06df-493f-b683-92d2c3f21851
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'País Traducción'
+		dataType: string
+		lineageTag: 6b070c49-df0f-41f5-b6ff-758f93fe0ab1
+		summarizeBy: none
+		sourceColumn: País Traducción
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Pais = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("ZY8xDsIwDEWvEnXuJRACBIiFwlR1sBoDlopTpamA4zAyIo6Qi+E4CAam//X843zXdbFnCmhNFSDgUJTFbAhg3WCEixRN+Y2siY/WnSWzRWKXExpYsiUQnjWRFfTAQkTjixVVbgwns3YeU3Sa1FjsTDV6nc89cIsyUvPZMwUGq/lk4j1v6oFYq/YQnzm4QH8GvgmddCju836DV2qd0E18qEtwB3TRdsnEe643GYfgodM7fl47nIi1gqoWIDbEBydftpTuK/9R07wB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [country = _t, #"País Traducción" = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"country", type text}, {"País Traducción", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

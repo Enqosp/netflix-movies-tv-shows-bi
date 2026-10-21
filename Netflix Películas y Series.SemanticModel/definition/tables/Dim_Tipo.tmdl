@@ -1,0 +1,30 @@
+table Dim_Tipo
+	lineageTag: 45b88f01-6474-4044-a0ad-d42d8cfff327
+
+	column type
+		dataType: string
+		lineageTag: 63eb3fb3-7b1c-4bdc-b58b-32bc43ad7a1e
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo Traducción'
+		dataType: string
+		lineageTag: 4a4e784c-f1d3-461d-9d55-6fa40302adad
+		summarizeBy: none
+		sourceColumn: Tipo Traducción
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Tipo = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8s0vy0xV0lEKSM05vDa5NCexWClWJ1opJEwhOCO/HCgRnFqUmQoUjAUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"type" = _t, #"Tipo Traducción" = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"type", type text}, {"Tipo Traducción", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

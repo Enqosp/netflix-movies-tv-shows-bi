@@ -1,0 +1,74 @@
+table dim_genero
+	lineageTag: 8b17aa7a-9b52-4cf0-9354-fbe58828e1ee
+
+	column listed_in
+		lineageTag: 4d35571c-297f-47ed-9ee6-5b6b60c5703a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [listed_in]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genero_Traducido
+		lineageTag: 35bfe2fa-9c64-4f78-8344-6cc84ad698b2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Genero_Traducido]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_genero = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "listed_in", STRING,
+				    "Genero_Traducido", STRING,
+				    {
+				        {"Action & Adventure", "Acción y Aventura"},
+				        {"Anime Features", "Películas de Anime"},
+				        {"Anime Series", "Series de Anime"},
+				        {"British TV Shows", "Series Británicas"},
+				        {"Children & Family Movies", "Cine Infantil/Familiar"},
+				        {"Classic & Cult TV", "TV Clásica y de Culto"},
+				        {"Classic Movies", "Películas Clásicas"},
+				        {"Comedies", "Comedias"},
+				        {"Crime TV Shows", "Series de Crimen"},
+				        {"Cult Movies", "Películas de Culto"},
+				        {"Documentaries", "Documentales"},
+				        {"Docuseries", "Docuseries"},
+				        {"Dramas", "Dramas"},
+				        {"Faith & Spirituality", "Fe y Espiritualidad"},
+				        {"Horror Movies", "Películas de Terror"},
+				        {"Independent Movies", "Cine Independiente"},
+				        {"International Movies", "Cine Internacional"},
+				        {"International TV Shows", "Series Internacionales"},
+				        {"Kids' TV", "Series Infantiles"},
+				        {"Korean TV Shows", "Series Coreanas"},
+				        {"LGBTQ Movies", "Películas LGBTQ+"},
+				        {"Movies", "Películas"},
+				        {"Music & Musicals", "Música y Musicales"},
+				        {"Reality TV", "Reality TV"},
+				        {"Romantic Movies", "Películas Románticas"},
+				        {"Romantic TV Shows", "Series Románticas"},
+				        {"Science & Nature TV", "TV de Ciencia y Naturaleza"},
+				        {"Sci-Fi & Fantasy", "Ciencia Ficción y Fantasía"},
+				        {"Spanish-Language TV Shows", "Series en Español"},
+				        {"Sports Movies", "Películas de Deportes"},
+				        {"Stand-Up Comedy", "Stand-Up Comedy"},
+				        {"Stand-Up Comedy & Talk Shows", "Stand-Up y Talk Shows"},
+				        {"Teen TV Shows", "Series Juveniles"},
+				        {"Thrillers", "Thrillers / Suspenso"},
+				        {"TV Action & Adventure", "Series de Acción y Aventura"},
+				        {"TV Comedies", "Comedias de TV"},
+				        {"TV Dramas", "Dramas de TV"},
+				        {"TV Horror", "Series de Terror"},
+				        {"TV Mysteries", "Series de Misterio"},
+				        {"TV Sci-Fi & Fantasy", "Series de Ciencia Ficción y Fantasía"},
+				        {"TV Shows", "Series de TV"},
+				        {"TV Thrillers", "Series de Suspenso"}
+				    }
+				)
+
+	annotation PBI_Id = 46bdba5839614ce3b179d0e90a94c1ef
+
