@@ -10,6 +10,11 @@
 ## 📋 1. Resumen Ejecutivo & Objetivos del Proyecto
 Este proyecto presenta una solución de **Business Intelligence** integral desarrollada en **Power BI** para explorar, analizar y visualizar la oferta global de contenidos de Netflix hasta mediados de 2021.
 
+## 📥 Fuente de los Datos
+Los datos utilizados para este análisis provienen del conjunto público de Kaggle:
+- **Dataset:** [Netflix Movies and TV Shows - Kaggle](https://www.kaggle.com/datasets/shivamb/netflix-shows/data)
+*(Nota: Para ejecutar el proyecto localmente, descarga el archivo `netflix_titles.csv` desde el enlace anterior y colócalo en la raíz de esta carpeta).*
+
 ### Objetivos Clave:
 * **Analizar la estructura del catálogo:** Identificar la proporción histórica entre largometrajes (*Movies*) y series de televisión (*TV Shows*).
 * **Evaluar métricas de duración sin contaminación de datos:** Diseñar medidas analíticas aisladas para minutos (películas) y temporadas (series), evitando la mezcla errónea de unidades heterogéneas.
