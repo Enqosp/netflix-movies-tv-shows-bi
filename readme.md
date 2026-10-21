@@ -1,4 +1,4 @@
-# 🎬 Dashboard Analítico del Catálogo de Netflix (2021)
+# Dashboard Analítico del Catálogo de Netflix (2021)
 
 ![Netflix](https://img.shields.io/badge/Netflix-E50914?style=for-the-badge&logo=netflix&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
@@ -7,10 +7,10 @@
 
 ---
 
-## 📋 1. Resumen Ejecutivo & Objetivos del Proyecto
+## Resumen Ejecutivo & Objetivos del Proyecto
 Este proyecto presenta una solución de **Business Intelligence** integral desarrollada en **Power BI** para explorar, analizar y visualizar la oferta global de contenidos de Netflix hasta mediados de 2021.
 
-## 📥 Fuente de los Datos
+## Fuente de los Datos
 Los datos utilizados para este análisis provienen del conjunto público de Kaggle:
 - **Dataset:** [Netflix Movies and TV Shows - Kaggle](https://www.kaggle.com/datasets/shivamb/netflix-shows/data)
 *(Nota: Para ejecutar el proyecto localmente, descarga el archivo `netflix_titles.csv` desde el enlace anterior y colócalo en la raíz de esta carpeta).*
@@ -23,7 +23,7 @@ Los datos utilizados para este análisis provienen del conjunto público de Kagg
 
 ---
 
-## 🛠️ 2. Arquitectura de Datos y Limpieza (Data Quality)
+## Arquitectura de Datos y Limpieza (Data Quality)
 El procesamiento de datos se realizó a través del editor **Power Query (M)** en Power BI, asegurando los estándares de gobernanza y calidad de datos (*Data Quality*).
 
 ### Transformaciones y Limpieza Realizadas:
@@ -34,7 +34,7 @@ El procesamiento de datos se realizó a través del editor **Power Query (M)** e
 
 ---
 
-## 📐 3. Modelado y Medidas DAX Principales
+## Modelado y Medidas DAX Principales
 Se construyeron medidas calculadas en DAX con filtrado contextual directo utilizando `CALCULATE`, garantizando que cada formato de contenido mantenga su unidad de medida adecuada.
 
 ```dax
@@ -59,7 +59,7 @@ CALCULATE(
 
 ---
 
-## 🎨 4. Diseño UI/UX e Interacción (Tooltips Dinámicos)
+## Diseño UI/UX e Interacción (Tooltips Dinámicos)
 
 Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas estáticas innecesarias, el tablero implementa Información sobre Herramientas (*Tooltips*) contextuales:
 
@@ -69,11 +69,11 @@ Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas 
 
 ---
 
-## 📊 5. Vista Previa del Dashboard
+## Vista Previa del Dashboard
 ![Dashboard de Netflix](dashboard.png)
 ---
 
-## 💡 6. Hallazgos Analíticos y Conclusiones de Negocio
+## Hallazgos Analíticos y Conclusiones de Negocio
 
 1. **Dominio de Largometrajes:** El catálogo refleja una composición predominantemente orientada a películas (∼69.61%) frente a series (∼30.39%).
 2. **Duración Promedio del Cine:** La duración media general de las películas se consolida en ∼103.91 minutos, manteniéndose bastante estable en las producciones agregadas en los últimos años.
@@ -82,7 +82,7 @@ Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas 
 
 ---
 
-## 📁 7. Estructura del Repositorio (.PBIP)
+## Estructura del Repositorio (.PBIP)
 
 Este repositorio utiliza el formato **Power BI Project (.pbip)**, optimizado para el control de versiones con Git:
 
@@ -97,7 +97,7 @@ Este repositorio utiliza el formato **Power BI Project (.pbip)**, optimizado par
 
 ---
 
-## 🚀 8. Instrucciones de Uso
+## Instrucciones de Uso
 
 ### Requisitos Previos
 
