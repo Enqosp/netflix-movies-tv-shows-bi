@@ -1,18 +1,25 @@
-# Netflix Catalog Analytical Dashboard (2021)
+# 🎬 Netflix Catalog Analytical Dashboard (2021)
 
-## 1. Resumen Ejecutivo & Objetivos del Proyecto
-Este proyecto presenta una solución de Business Intelligence integral desarrollada en Power BI para explorar, analizar y visualizar la oferta global de contenidos de Netflix hasta mediados de 2021.
-
-### Objetivos Clave:
-- **Analizar la estructura del catálogo:** Identificar la proporción histórica entre largometrajes (*Movies*) y series de televisión (*TV Shows*).
-- **Evaluar métricas de duración sin contaminación de datos:** Diseñar medidas analíticas aisladas para minutos (películas) y temporadas (series), evitando la mezcla errónea de unidades heterogéneas.
-- **Mapear tendencias de adquisición e historial de estrenos:** Analizar los hábitos de la industria audiovisual a lo largo de las décadas (`release_year`) frente a las estrategias de incorporación de catálogo de la plataforma (`date_added`).
-- **Optimizar la experiencia de usuario (UX/UI):** Implementar la jerarquía visual de Tamara Munzner, reservando el espacio principal para la macroinformación y aprovechando *Tooltips* emergentes interactivos para el detalle micro.
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-00758F?style=for-the-badge&logo=powerbi&logoColor=white)
+![Power Query](https://img.shields.io/badge/Power_Query-00838F?style=for-the-badge&logo=powerbi&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
 ---
 
-## 2. Arquitectura de Datos y Limpieza (Data Quality)
-El procesamiento de datos se realizó a través del editor Power Query (M) en Power BI, asegurando los estándares de gobernanza y calidad de datos (*Data Quality*).
+## 📋 1. Resumen Ejecutivo & Objetivos del Proyecto
+Este proyecto presenta una solución de **Business Intelligence** integral desarrollada en **Power BI** para explorar, analizar y visualizar la oferta global de contenidos de Netflix hasta mediados de 2021.
+
+### Objetivos Clave:
+* **Analizar la estructura del catálogo:** Identificar la proporción histórica entre largometrajes (*Movies*) y series de televisión (*TV Shows*).
+* **Evaluar métricas de duración sin contaminación de datos:** Diseñar medidas analíticas aisladas para minutos (películas) y temporadas (series), evitando la mezcla errónea de unidades heterogéneas.
+* **Mapear tendencias de adquisición e historial de estrenos:** Analizar los hábitos de la industria audiovisual a lo largo de las décadas (`release_year`) frente a las estrategias de incorporación de catálogo de la plataforma (`date_added`).
+* **Optimizar la experiencia de usuario (UX/UI):** Implementar la jerarquía visual de Tamara Munzner, reservando el espacio principal para la macroinformación y aprovechando *Tooltips* emergentes interactivos para el detalle micro.
+
+---
+
+## 🛠️ 2. Arquitectura de Datos y Limpieza (Data Quality)
+El procesamiento de datos se realizó a través del editor **Power Query (M)** en Power BI, asegurando los estándares de gobernanza y calidad de datos (*Data Quality*).
 
 ### Transformaciones y Limpieza Realizadas:
 1. **Validación de Categorías (`type`):** Verificación al 100% de la integridad de los registros, confirmando valores limpios y normalizados para *Movie* y *TV Show*.
@@ -22,7 +29,7 @@ El procesamiento de datos se realizó a través del editor Power Query (M) en Po
 
 ---
 
-## 3. Modelado y Medidas DAX Principales
+## 📐 3. Modelado y Medidas DAX Principales
 Se construyeron medidas calculadas en DAX con filtrado contextual directo utilizando `CALCULATE`, garantizando que cada formato de contenido mantenga su unidad de medida adecuada.
 
 ```dax
@@ -47,7 +54,7 @@ CALCULATE(
 
 ---
 
-## 4. Diseño UI/UX e Interacción (Tooltips Dinámicos)
+## 🎨 4. Diseño UI/UX e Interacción (Tooltips Dinámicos)
 
 Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas estáticas innecesarias, el tablero implementa Información sobre Herramientas (*Tooltips*) contextuales:
 
@@ -57,13 +64,11 @@ Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas 
 
 ---
 
-## 5. Capturas de Pantalla del Dashboard
-
-### Vista General del Tablero
+## 📊 5. Vista Previa del Dashboard
 
 ---
 
-## 6. Hallazgos Analíticos y Conclusiones de Negocio
+## 💡 6. Hallazgos Analíticos y Conclusiones de Negocio
 
 1. **Dominio de Largometrajes:** El catálogo refleja una composición predominantemente orientada a películas (∼69.61%) frente a series (∼30.39%).
 2. **Duración Promedio del Cine:** La duración media general de las películas se consolida en ∼103.91 minutos, manteniéndose bastante estable en las producciones agregadas en los últimos años.
@@ -72,7 +77,7 @@ Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas 
 
 ---
 
-## 7. Estructura del Repositorio (.PBIP)
+## 📁 7. Estructura del Repositorio (.PBIP)
 
 Este repositorio utiliza el formato **Power BI Project (.pbip)**, optimizado para el control de versiones con Git:
 
@@ -80,13 +85,14 @@ Este repositorio utiliza el formato **Power BI Project (.pbip)**, optimizado par
 ├── Netflix Peliculas y Series.Report/          # Formato visual, páginas y layout
 ├── Netflix Peliculas y Series.SemanticModel/   # Modelo de datos, relaciones y medidas
 ├── .gitignore                                     # Archivo para ignorar configuraciones locales
+├── dashboard.png                                  # Imagen de vista previa del reporte
 └── Netflix Peliculas y Series.pbip             # Archivo ejecutable del proyecto
 
 ```
 
 ---
 
-## 8. Instrucciones de Uso
+## 🚀 8. Instrucciones de Uso
 
 ### Requisitos Previos
 
@@ -108,14 +114,3 @@ git clone [https://github.com/Enqosp/netflix-movies-tv-shows-bi.git](https://git
 ---
 
 *Proyecto desarrollado con fines analíticos y académicos.*
-
-```
-
-### ¿Cómo actualizarlo ahora en tu GitHub?
-1. Ve a tu repositorio en la web de GitHub.
-2. En la lista de archivos, haz clic en **`README.md`**.
-3. Haz clic en el ícono del **lápiz** (esquina superior derecha) para editar.
-4. Selecciona todo el texto anterior, borralo y pega este código.
-5. Baja al final y haz clic en el botón verde **"Commit changes"**.
-
-```
