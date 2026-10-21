@@ -65,7 +65,7 @@ Para mantener la pulcritud visual y evitar sobrecargar la interfaz con tarjetas 
 ---
 
 ## 📊 5. Vista Previa del Dashboard
-
+![Dashboard de Netflix](dashboard.png)
 ---
 
 ## 💡 6. Hallazgos Analíticos y Conclusiones de Negocio
