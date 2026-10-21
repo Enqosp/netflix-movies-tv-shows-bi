@@ -1,5 +1,6 @@
 # 🎬 Dashboard Analítico del Catálogo de Netflix (2021)
 
+![Netflix](https://img.shields.io/badge/Netflix-E50914?style=for-the-badge&logo=netflix&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 ![DAX](https://img.shields.io/badge/DAX-00758F?style=for-the-badge&logo=powerbi&logoColor=white)
 ![Power Query](https://img.shields.io/badge/Power_Query-00838F?style=for-the-badge&logo=powerbi&logoColor=white)
